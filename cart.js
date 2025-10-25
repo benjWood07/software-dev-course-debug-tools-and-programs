@@ -35,11 +35,14 @@ function generateReceipt(cartItems, total) {
   return receipt;
 }
 
-// Debugging entry point
+//Debugging entry point
 console.log("Starting shopping cart calculation...");
 const total = calculateTotal(cart);
+console.log("Calculated total:", total); //Debug with log to verify calculation
 const discountedTotal = applyDiscount(total, 0.2); // 20% discount
+console.log("Discounted total:", discountedTotal);
 const receipt = generateReceipt(cart, discountedTotal);
+console.log("Generated receipt:", receipt);
 
 document.getElementById("total").textContent = `Total: $${discountedTotal}`;
 document.getElementById("receipt").textContent = receipt;
