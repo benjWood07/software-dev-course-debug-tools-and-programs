@@ -3,11 +3,11 @@ const cart = [
   { name: "Phone", price: 500 },
   { name: "Headphones", price: 200 }
 ];
-
+//Fix Applied: Changed `i <= cartItems.length` to `i < cartItems.length` to remove final iteration
 function calculateTotal(cartItems) {
   let total = 0;
-  for (let i = 0; i <= cartItems.length; i++) { // Bug: <= should be <
-      total += cartItems[i].price; // Bug: cartItems[i] is undefined on the last iteration
+  for (let i = 0; i < cartItems.length; i++) { // Bug: <= should be <
+      total += cartItems[i].price; 
   }
   return total;
 }
