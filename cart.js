@@ -42,7 +42,12 @@ console.log("Calculated total:", total); //Debug with log to verify calculation
 const discountedTotal = applyDiscount(total, 0.2); // 20% discount
 console.log("Discounted total:", discountedTotal);
 const receipt = generateReceipt(cart, discountedTotal);
-console.log("Generated receipt:", receipt);
+console.log("Generated receipt:\n", receipt);
 
 document.getElementById("total").textContent = `Total: $${discountedTotal}`;
 document.getElementById("receipt").textContent = receipt;
+
+//Edge cases
+const emptyCart = [];
+const emptyTotal = calculateTotal(emptyCart);
+console.log("Empty cart total:", 0);
