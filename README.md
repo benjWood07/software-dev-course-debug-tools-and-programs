@@ -1,53 +1,45 @@
 # 🛠️ Debugging Practice: E-Commerce Application
 
-## 🎯 Objective
-
-Students will apply **debugging tools and strategies** to identify and fix errors in a pre-written JavaScript application.
-
-This exercise emphasizes using:
-
-- The **Console**
-- The **Sources tab**
-- The **`debugger` statement**
-- Practical strategies like **isolating problematic code** and **testing edge cases**
-
----
-
-## 🛒 Scenario
-
-You are tasked with debugging a simple **JavaScript application** for an **e-commerce platform**.
-
-The application is supposed to:
-
-- Calculate the **total price** of items in a shopping cart
-- Apply **discounts**
-- Generate a **receipt**
-
-Unfortunately, the application has several bugs that are causing it to malfunction.
-
----
-
-## 🧩 Your Task
-
-You will:
-
-- 🐛 **Identify and fix errors** using browser developer tools
-- 🔍 **Analyze error messages and the call stack** for clues
-- 🧪 **Test edge cases** to make sure the program behaves correctly in different scenarios
-
----
-
-## 🖥️ Instructions
-
-### 1. Set Up the Debugging Environment
-
-- Open the project’s `index.html` file in your **browser**
-- Launch **Developer Tools** using:
-  - `F12`, or  
-  - `Ctrl+Shift+I` (Windows) / `Cmd+Option+I` (Mac)
+1st Bug FIX: Off-by-One Error in Loop
+Original Error:
+- Error Message: TypeError: Cannot read property 'price' of undefined
+- Cause: Loop condition used `i <= cartItems.length` instead of `i < cartItems.length`
+This caused the loop to run one extra time, trying to access cartItems[3] which doesn't exist
   
-From there, use the **Console**, **Sources tab**, and **debugger statements** to investigate and fix issues in the JavaScript code.
+How Debugging Tools Helped:
+- Console: "TypeError: Cannot read property 'price' of undefined"
+- Call stack led me to this function as the error source
+- Tried setting a breakpoint in the loop and watched the `i` variable. Revealed it reached 3 when array length was 3
+- Using debugger statement inside the loop showed cartItems[i] was undefined on the final iteration
+ 
+Fix Applied: Changed `i <= cartItems.length` to `i < cartItems.length`
 
----
+2nd Bug FIX: Missing Input Validation for Discount Rate
+Original Issue:
+- No validation for discountRate parameter
+- Could accept negative values, values > 1, or non-numeric values
+- Would cause incorrect calculations or runtime errors
 
-Let me know if you'd like to add starter files, error clues, or a checklist of bugs to find!
+Edge Cases Discovered During Testing:
+- discountRate = "0.2" (string) would cause NaN result
+
+How Debugging Tools Helped:
+- Setting breakpoints before the calculation allowed inspection of parameter values
+- console.log() statements revealed unexpected discountRate values during edge case testing
+- Testing with debugger statement showed the math producing incorrect results
+  
+Fix Applied: Added validation to ensure discountRate is a number between 0 and 1
+
+3rd Bug FIX: Type Safety Issue with total Parameter
+Original Issue:
+- No validation that `total` is a number before calling .toFixed()
+- If applyDiscount() returned undefined or a non-number, would throw:
+  "TypeError: total.toFixed is not a function"
+
+How Debugging Tools Helped:
+- Call stack showed error originated at the .toFixed() call
+- Breakpoint at function entry revealed total was sometimes undefined in edge cases
+- Console confirmed typeof total when testing with empty cart or invalid inputs
+
+Fix Applied: Added type checking and default value for total parameter
+
