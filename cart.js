@@ -7,6 +7,7 @@ const cart = [
 function calculateTotal(cartItems) {
   let total = 0;
   for (let i = 0; i < cartItems.length; i++) {
+      //debugger; 
       total += cartItems[i].price; 
   }
   return total;
@@ -34,6 +35,7 @@ function generateReceipt(cartItems, total) {
   }
   let receipt = "Items:\n";
   cartItems.forEach(item => {
+    //debugger;
       receipt += `${item.name}: $${item.price}\n`;
   });
   receipt += `Total: $${total.toFixed(2)}`;
