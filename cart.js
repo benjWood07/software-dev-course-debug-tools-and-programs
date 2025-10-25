@@ -57,3 +57,10 @@ console.log("Empty cart total:", 0);
 const singleItemCart = [{ name: "Wireless Keyboard", price: 48 }];
 const singleTotal = calculateTotal(singleItemCart);
 console.log("SIngle item total:", singleTotal);
+
+//Test Case: No discount or full discount
+const noDiscount = applyDiscount(100, 0);
+console.log("No discount applied:", noDiscount);
+
+const fullDiscount = applyDiscount(100, 1);
+console.log("Full discount applied:", fullDiscount);
