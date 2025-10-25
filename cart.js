@@ -11,6 +11,11 @@ function calculateTotal(cartItems) {
   }
   return total;
 }
+  /*
+//Refactored: Fun with arrow functions
+const calculateTotal = (cartItems) => 
+  cartItems.reduce((total, item) => total + item.price, 0);
+*/
 
 function applyDiscount(total, discountRate) {
   //Fixed: Added input validation
@@ -33,6 +38,14 @@ function generateReceipt(cartItems, total) {
   });
   receipt += `Total: $${total.toFixed(2)}`;
   return receipt;
+/*
+//Refactored: Fun with arrow functions
+  const itemsList = cartItems
+    .map(item => `${item.name}: $${item.price}`)
+    .join('\n');
+  
+  return `Items:\n${itemsList}\nTotal: $${total.toFixed(2)}`;
+  */
 }
 
 //Debugging entry point
