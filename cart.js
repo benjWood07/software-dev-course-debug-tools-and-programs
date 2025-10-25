@@ -48,6 +48,12 @@ document.getElementById("total").textContent = `Total: $${discountedTotal}`;
 document.getElementById("receipt").textContent = receipt;
 
 //Edge cases
+//Test Case: Empty cart
 const emptyCart = [];
 const emptyTotal = calculateTotal(emptyCart);
 console.log("Empty cart total:", 0);
+
+//Test Case: Single item cart
+const singleItemCart = [{ name: "Wireless Keyboard", price: 48 }];
+const singleTotal = calculateTotal(singleItemCart);
+console.log("SIngle item total:", singleTotal);
