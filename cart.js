@@ -13,6 +13,11 @@ function calculateTotal(cartItems) {
 }
 
 function applyDiscount(total, discountRate) {
+  //Fixed: Added input validation
+  if (typeof discountRate !== 'number' || discountRate < 0 || discountRate > 1) {
+    console.error("Invalid disocunt rate. Must be a number between 0 and 1.");
+    return total;
+  }
   return total - total * discountRate; // Bug: Missing validation for discountRate
 }
 
